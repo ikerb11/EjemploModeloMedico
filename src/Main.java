@@ -1,5 +1,4 @@
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Main {
@@ -9,17 +8,24 @@ public class Main {
             Statement stmt = (Statement) Conexion.getConnection().createStatement(
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
-            ResultSet resultSet = stmt.executeQuery("select * from medicos where id = 1");
-            Modelo modelo = new Modelo("311231233", "Manolo", "Maurisio" );
-            //mm.insertar(rs);
-            for ( Modelo m: modelo.buscador("A")){
-                if (resultSet.next()){
-                    m.delete(resultSet,resultSet.getRow());
+            /*
+            * El ResulSet Se usa tanto en el insertar, Update y Delete. Elbusador usa un ResulsetPropio
+            */
+            ResultSet resultSet = stmt.executeQuery("select * from medicos");
+            Modelo modelo = new Modelo("295867K", "Antoni", "Cabrera" );
+
+            if (resultSet.next()){
+                /*Insertar*/
+                //modelo.insertar(resultSet);
+                /*Update*/
+                //modelo.update(resultSet, resultSet.getRow());
+                /*Delete*/
+                //m.delete(resultSet);
+                /*Buscar por nombre*/
+                for ( Modelo m: modelo.buscador("A", 15)){
+                    System.out.println(m.getNombre());
                 }
-                //System.out.println(m.getNombre());
             }
-
-
         }catch(Exception e){
             e.printStackTrace();
         }
