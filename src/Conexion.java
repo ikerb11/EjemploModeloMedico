@@ -16,6 +16,7 @@ public class Conexion {
 
     //Clave de BD
     private String password;
+
     /**Constructor
     Inicializa parámetros de conexión y crea la conexión
     @throws ClassNotFoundException
